@@ -1,0 +1,36 @@
+
+<div class="content">
+
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="formulario">
+            <h1>Nova Solicitação</h1>
+        <mat-form-field>
+            <mat-label>Assunto</mat-label>
+            <input matInput formControlName="assunto" required>
+            <mat-error>Campo obrigatório</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Categoria</mat-label>
+            <mat-select formControlName="categoria" required>
+                <mat-option value="Sistema de Agendamento">Sistema de Agendamento</mat-option>
+                <mat-option value="Sistema do medico">Sistema do medico</mat-option>
+                <mat-option value="Problemas Na internet">Problemas Na internet</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Descrição</mat-label>
+                <textarea  formControlName="descricao" matInput rows="5" resize="none" required>
+                </textarea>
+                <mat-error>Campo obrigatório</mat-error>
+             </mat-form-field>
+
+             <mat-form-field>
+                <mat-label>Solicitante</mat-label>
+                <input matInput [value]="nome" disabled>
+            </mat-form-field>
+
+             <div class="btn-box">
+                <button mat-flat-button color="primary" type="submit" [disabled]="!formulario.valid" >Enviar</button>
+                <button mat-stroked-button color="warn" routerLink="/">Cancelar</button>
+             </div>
+    </form>
+</div>

@@ -1,0 +1,60 @@
+<div class="content">
+
+    <div class="itens-filtro">
+        <div class="filtro">
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Pesquisar por nome</mat-label>
+                    <input matInput [formControl]="pesquisaControl" placeholder="Ex. Nome" (input)="search($event)">
+                </mat-form-field>
+            </form>
+        </div>
+        <div class="title">
+            <h1><b>Atendimento - Chamados</b></h1>
+        </div>
+
+        <div class="abrir-chamado">
+            <button routerLink="/abrirchamado" mat-stroked-button color="primary">Nova Solicitação</button>
+        </div>
+    </div>
+
+
+    <div class="atendimento">
+        <div *ngFor="let solicitacao of solicitacos">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="status">
+                            <div class="andamento" *ngIf="solicitacao.statusAndamentoOuFinalizado == null">
+                                <mat-icon class="iconNovo">radio_button_checked</mat-icon>
+                            </div>
+                            
+                            <div class="andamento" *ngIf="solicitacao.statusAndamentoOuFinalizado == true">
+                                <mat-icon class="iconFinalizado">radio_button_checked</mat-icon>
+                            </div>
+                            
+                            <div class="andamento" *ngIf="solicitacao.statusAndamentoOuFinalizado == false">
+                                <mat-icon class="iconAndamento">radio_button_checked</mat-icon>
+                            </div>
+                        </div>
+                        
+                        {{ solicitacao.assunto}}
+                    </mat-panel-title>
+                    
+                    <mat-panel-description>
+                        Solicitante: {{ solicitacao.solicitanteAtendimento}}
+                        
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                
+                <p>{{solicitacao.descricao}}</p>
+                <p>{{solicitacao.dataCriacao}}</p>
+                
+                <button routerLink="/detalhes/{{solicitacao.id}}" mat-stroked-button color="accent">Detalhes</button>
+                
+                
+            </mat-expansion-panel>
+            
+        </div>
+    </div>
+</div>

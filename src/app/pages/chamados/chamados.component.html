@@ -1,0 +1,56 @@
+<div class="content">
+
+    <div class="itens-filtro">
+        <div class="title">
+            <h1><b>Meus Chamados</b></h1>
+        </div>
+
+        <div class="abrir-chamado">
+            <button routerLink="/abrirchamado" mat-stroked-button color="primary">Nova Solicitação</button>
+        </div>
+    </div>
+
+
+    <div class="atendimento">
+        <div *ngFor="let solicitacao of solicitacos">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="status">
+                            <div class="andamento" *ngIf="solicitacao.statusAndamentoOuFinalizado == null">
+                                <mat-icon class="iconNovo">radio_button_checked</mat-icon>
+                            </div>
+                            
+                            <div class="andamento" *ngIf="solicitacao.statusAndamentoOuFinalizado == true">
+                                <mat-icon class="iconFinalizado">radio_button_checked</mat-icon>
+                            </div>
+                            
+                            <div class="andamento" *ngIf="solicitacao.statusAndamentoOuFinalizado == false">
+                                <mat-icon class="iconAndamento">radio_button_checked</mat-icon>
+                            </div>
+                        </div>
+                        
+                        {{ solicitacao.assunto}}
+                    </mat-panel-title>
+                    
+                    <mat-panel-description>
+                        <mat-icon>account_circle</mat-icon>
+                        Solicitante: {{ solicitacao.solicitanteAtendimento}}
+                        
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                
+                <p>Descrição: {{solicitacao.descricao}}</p>
+                <p *ngIf="solicitacao.dataFinalizacao != null" >Resposta: {{solicitacao.resposta}}</p>
+                <p *ngIf="solicitacao.responsavelAtendimento != null" >Resposta: {{solicitacao.responsavelAtendimento}}</p>
+                <p>Data Criação: {{solicitacao.dataCriacao}}</p>
+                <p>Data Finalização: {{solicitacao.dataFinalizacao}}</p>
+                
+                <button *ngIf="usuario.userAtendimento" routerLink="/detalhes/{{solicitacao.id}}" mat-stroked-button color="accent">Detalhes</button>
+                
+                
+            </mat-expansion-panel>
+            
+        </div>
+    </div>
+</div>

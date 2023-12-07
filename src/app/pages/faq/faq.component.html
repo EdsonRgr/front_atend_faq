@@ -1,0 +1,52 @@
+<div class="content">
+    
+    <div class="itens-filtro">
+        <div class="pesquisa">
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Pesquisar por Categoria</mat-label>
+                    <input matInput [formControl]="pesquisaControl" placeholder="Ex. Categoria" (input)="search($event)">
+                </mat-form-field>
+            </form>
+        </div>
+
+        <div class="title">
+            <h1><b>Dúvidas frequentes!</b></h1>
+        </div>
+        <div *ngIf="!usuario.userAtendimento"class="abrir-chamado">
+            <button routerLink="/abrirchamado" mat-stroked-button color="primary">Nova Solicitação</button>
+        </div>
+
+        <div *ngIf="usuario.userAtendimento" class="abrir-chamado">
+            <button mat-stroked-button color="primary">Adicionar Duvida</button>
+        </div>
+    
+    </div>
+
+    <div class="duvidas">
+        <div *ngFor="let duvida of duvidas" class="duvida">
+            
+            <mat-expansion-panel>
+                
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{ duvida.titulo}}
+                    </mat-panel-title>
+                    
+                    <mat-panel-description>
+                        Categoria: {{ duvida.categoria}}
+                        
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                
+                <p>{{duvida.conteudo}}</p>
+                <p>Data de Criação: {{duvida.dataCriacao}}</p>
+                
+                <button mat-button>Gostei</button>
+                <button mat-button>Não Gostei</button>
+                
+            </mat-expansion-panel>
+            
+        </div>
+    </div>
+</div>
